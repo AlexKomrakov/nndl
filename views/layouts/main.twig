@@ -1,0 +1,59 @@
+{{ use('app/assets/AppAsset') }}
+{{ register_app_asset() }}
+
+{{ this.beginPage() }}
+
+<!DOCTYPE html>
+<html lang="{{ app.language }}">
+<head>
+    <meta charset="{{ app.charset }}"/>
+
+    {{ html.csrfMetaTags() | raw }}
+
+    <title>{{ html.encode(this.title) }}</title>
+
+    {{ this.head() }}
+
+</head>
+<body>
+
+{{ this.beginBody() }}
+
+<div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+    <nav class="uk-navbar uk-margin-large-bottom">
+        <a class="uk-navbar-brand" href="{{ app.homeUrl }}">NNDL</a>
+
+        {% if not app.user.isGuest %}
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="{{ url('/teams/index') }}">Команда</a>
+            </li>
+        </ul>
+        {% endif %}
+
+        <div class="uk-navbar-flip">
+            <ul class="uk-navbar-nav">
+                {% if app.user.isGuest %}
+                <li>
+                    <a href="{{ url('/site/auth', {'authclient':'steam'}) }}" class="uk-navbar-nav">Вход через Steam</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ url('/site/logout') }}" class="uk-navbar-nav-subtitle" data-method="post">Выход<div>{{ app.user.identity.personaname }}</div></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {{ content | raw }}
+
+</div>
+
+{{ this.endBody() }}
+
+</body>
+</html>
+
+{{ this.endPage() }}

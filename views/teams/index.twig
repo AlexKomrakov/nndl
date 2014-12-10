@@ -1,0 +1,11 @@
+{% if app.user.identity.hasTeam() %}
+    {% include '_team.twig' %}
+{% else %}
+    <div class="uk-grid uk-margin-large-bottom" data-uk-grid-margin="">
+        <div class="uk-width-medium-1-1">
+            <div class="uk-panel uk-panel-box uk-text-center">
+                <p><a class="uk-button uk-button-primary uk-margin-left" href="{{ url('/teams/create') }}">Создать команду</a></p>
+            </div>
+        </div>
+    </div>
+{% endif %}

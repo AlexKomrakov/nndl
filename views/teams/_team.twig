@@ -1,0 +1,37 @@
+<form class="uk-form uk-form-horizontal uk-margin-large-bottom">
+    <fieldset>
+        <legend>{{ team.title }}</legend>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-s">Мэнеджер</label>
+            {% for manager in team.managers %}
+                <div class="uk-form-controls uk-form-row">
+                    <input type="text" value="{{ manager }}" class="uk-form-width-medium" disabled>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-s">Основной состав</label>
+            {% for player in team.players %}
+            <div class="uk-form-controls uk-form-row">
+                <input type="text" value="{{ player }}" class="uk-form-width-medium" disabled>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="uk-form-row">
+            <label class="uk-form-label" for="form-h-s">Запасные игроки</label>
+            {% for reserve in team.reserve %}
+            <div class="uk-form-controls uk-form-row">
+                <input type="text" value="{{ reserve }}" class="uk-form-width-medium" disabled>
+            </div>
+            {% endfor %}
+        </div>
+    </fieldset>
+</form>
+
+<div class="uk-grid uk-margin-large-bottom" data-uk-grid-margin="">
+    <div class="uk-width-medium-1-1">
+        <div class="uk-panel uk-panel-box uk-text-center">
+            <p><a class="uk-button uk-button-danger uk-margin-left" href="{{ url('/teams/delete') }}">Удалить команду</a></p>
+        </div>
+    </div>
+</div>
