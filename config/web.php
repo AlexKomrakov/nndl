@@ -11,10 +11,7 @@ $config = [
             'enableStrictParsing' => false,
             'showScriptName' => true,
             'rules' => [
-//                ['class' => 'yii\rest\UrlRule', 'controller' => 'site'],
-//                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
-//                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-//                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/Teamsapi'], // http://www.yiiframework.com/doc-2.0/guide-rest-routing.html
             ],
         ],
         'view' => [
@@ -39,6 +36,9 @@ $config = [
             ],
         ],
         'request' => [
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '3TAZclrJab0TR0zZIQ-gDwTZNSHFScsL',
         ],
