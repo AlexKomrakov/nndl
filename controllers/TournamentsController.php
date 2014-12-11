@@ -24,7 +24,7 @@ class TournamentsController extends Controller {
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create'],
+                        'actions' => ['create', 'index'],
                         'allow' => isset(Yii::$app->user->identity) && Yii::$app->user->identity->isAdmin(),
                         'roles' => ['@']
                     ],
@@ -39,6 +39,11 @@ class TournamentsController extends Controller {
     public function actionCreate()
     {
         return $this->render('create.twig');
+    }
+
+    public function actionIndex()
+    {
+        return $this->render('index.twig');
     }
 
 } 

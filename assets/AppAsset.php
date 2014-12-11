@@ -22,6 +22,11 @@ class AppAsset extends AssetBundle
         'uikit/css/uikit.css',
     ];
     public $js = [
+        'angular-1.3.0/angular.min.js',
+        'angular-1.3.0/angular-resource.min.js',
+        'angular-1.3.0/angular-aria.min.js',
+        'js/angular/nndl.js',
+        'js/angular/controllers.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
