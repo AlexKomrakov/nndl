@@ -9,7 +9,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => false,
-            'showScriptName' => true,
+            'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/Teamsapi'], // http://www.yiiframework.com/doc-2.0/guide-rest-routing.html
             ],
