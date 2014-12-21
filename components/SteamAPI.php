@@ -46,13 +46,24 @@ class SteamAPI {
      */
     public function getPlayerSummaries($player_id)
     {
-        $api_key = $this->api_key;
-        if (is_array($player_id)) {
-            $player_id = implode(",", $player_id);
+        $key    = Yii::$app->cache->buildKey(['getPlayerSummaries', $player_id]);
+        $result = Yii::$app->cache->get($key);
+        if ($result === false) {
+            $api_key = $this->api_key;
+            if (is_array($player_id)) {
+                $player_id = implode(",", $player_id);
+            }
+            $link = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$api_key}&steamids={$player_id}";
+            $response = json_decode(file_get_contents($link), true);
+
+            if (isset($response['response']['players'])) {
+                Yii::$app->cache->set($key, $response['response']['players'], 24*60*60);
+                $result = $response['response']['players'];
+            } else {
+                $result = null;
+            }
         }
-        $link = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={$api_key}&steamids={$player_id}";
-        $response = json_decode(file_get_contents($link), true);
-        $result = (isset($response['response']['players'])) ? $response['response']['players'] : null;
+
         return $result;
     }
 
@@ -68,10 +79,20 @@ class SteamAPI {
      */
     public function getFriendList($player_id)
     {
-        $api_key = $this->api_key;
-        $link = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={$api_key}&steamid={$player_id}&relationship=friend";
-        $response = json_decode(file_get_contents($link), true);
-        $result = (isset($response['friendslist']['friends'])) ? $response['friendslist']['friends'] : null;
+        $key    = Yii::$app->cache->buildKey(['getFriendList', $player_id]);
+        $result = Yii::$app->cache->get($key);
+        if ($result === false) {
+            $api_key = $this->api_key;
+            $link = "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key={$api_key}&steamid={$player_id}&relationship=friend";
+            $response = json_decode(file_get_contents($link), true);
+            if (isset($response['friendslist']['friends'])) {
+                $result = $response['friendslist']['friends'];
+                Yii::$app->cache->set($key, $result, 10*60);
+            } else {
+                $result = null;
+            }
+        }
+
         return $result;
     }
 
@@ -88,6 +109,7 @@ class SteamAPI {
         foreach ($chunks as $chunk) {
             $result = array_merge( $this->getPlayerSummaries($chunk), $result );
         }
+
         return $result;
     }
 
@@ -100,6 +122,7 @@ class SteamAPI {
         $api_key = $this->api_key;
         $link = "http://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/v0001/?key={$api_key}&match_id={$match_id}";
         $response = json_decode(file_get_contents($link), true);
+
         return $response;
     }
 

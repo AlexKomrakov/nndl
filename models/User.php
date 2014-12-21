@@ -29,6 +29,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->personaname = $summaries['personaname'];
         $user->profileurl  = $summaries['profileurl'];
         $user->avatarfull  = $summaries['avatarfull'];
+
         $user->save();
     }
 

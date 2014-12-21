@@ -3,4 +3,6 @@
  */
 
 angular
-    .module('nndl', []);
+    .module('nndl', [
+        'ngResource'
+    ]);

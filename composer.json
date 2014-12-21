@@ -21,7 +21,8 @@
         "yiisoft/yii2-authclient": "*",
         "phpunit/phpunit": "~4.4@dev",
         "yiisoft/yii2-twig": "*",
-        "yiisoft/yii2-mongodb": "*"
+        "yiisoft/yii2-mongodb": "*",
+        "yiisoft/yii2-redis": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

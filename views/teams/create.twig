@@ -1,38 +1,42 @@
-<h3>Создание команды</h3>
-{% if not app.user.isGuest  %}
-    <form role="form" name="Teams" method="post">
-        <input type="hidden" name="_csrf" value="{{ app.request.getCsrfToken() }}" />
-        <div class="form-group">
-            <label for="exampleInputEmail1">Team name</label>
-            <input type="text" class="form-control" name="Teams[title]" placeholder="Team name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Team</label>
-            <input type="hidden" class="form-control" name="Teams[managers][]" value="{{ app.user.identity.steamid }}">
-            <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id" value="{{ app.user.identity.steamid }}">
-            <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
-            <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
-            <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
-            <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Reserve</label>
-            <input type="text" class="form-control" name="Teams[reserve][]" placeholder="Steam id">
-            <input type="text" class="form-control" name="Teams[reserve][]" placeholder="Steam id">
-        </div>
-        <button type="submit" value="Teams" class="btn btn-default">Create</button>
-    </form>
-{% endif %}
+<div ng-controller="CreateTeam">
 
-<ul class="media-list">
-    {% for friend in friends %}
-        <li class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="{{ friend.avatar }}">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">{{ friend.personaname }}</h4>
+    <h3>Создание команды</h3>
+    {% if not app.user.isGuest  %}
+        <form role="form" name="Teams" method="post">
+            <input type="hidden" name="_csrf" value="{{ app.request.getCsrfToken() }}" />
+            <div class="form-group">
+                <label for="exampleInputEmail1">Team name</label>
+                <input type="text" class="form-control" name="Teams[title]" placeholder="Team name">
             </div>
-        </li>
-    {% endfor %}
-</ul>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Team</label>
+                <input type="hidden" class="form-control" name="Teams[managers][]" value="{{ app.user.identity.steamid }}">
+                <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id" value="{{ app.user.identity.steamid }}">
+                <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
+                <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
+                <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
+                <input type="text" class="form-control" name="Teams[players][]" placeholder="Steam id">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Reserve</label>
+                <input type="text" class="form-control" name="Teams[reserve][]" placeholder="Steam id">
+                <input type="text" class="form-control" name="Teams[reserve][]" placeholder="Steam id">
+            </div>
+            <button type="submit" value="Teams" class="btn btn-default">Create</button>
+        </form>
+    {% endif %}
+
+    <ul class="media-list">
+        {% for friend in friends %}
+            <li class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{ friend.avatar }}">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ friend.personaname }}</h4>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+</div>

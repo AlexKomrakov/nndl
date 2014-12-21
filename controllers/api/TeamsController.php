@@ -12,7 +12,7 @@ use yii\web\Response;
  * Time: 21:46
  */
 
-class TeamsApiController extends ActiveController
+class TeamsController extends ActiveController
 {
 
     public $modelClass = 'app\models\Teams';

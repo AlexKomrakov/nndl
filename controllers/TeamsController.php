@@ -59,14 +59,7 @@ class TeamsController extends Controller {
         if ( Teams::saveTeamFromForm(Yii::$app->request->post()) ) {
             return $this->actionIndex();
         } else {
-//            if (!Yii::$app->user->isGuest) {
-////            $steam_api = new SteamAPI( Yii::$app->params['steamWebAPI'] );
-////            $friends = $steam_api->getFriendList( Yii::$app->user->identity->steamid );
-////            $friends = $steam_api->extendFriendList( $friends );
-//            }
-            return $this->render('create.twig', [
-//            'friends' => $friends
-            ]);
+            return $this->render('create.twig');
         }
     }
 

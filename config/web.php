@@ -11,7 +11,7 @@ $config = [
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/Teamsapi'], // http://www.yiiframework.com/doc-2.0/guide-rest-routing.html
+                [ 'class' => 'yii\rest\UrlRule', 'controller' => ['api/users'],  'extraPatterns' => [ 'GET {id}/friends' => 'friends' ] ],
             ],
         ],
         'view' => [
@@ -44,6 +44,12 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+//            'class' => 'yii\redis\Cache',
+//            'redis' => [
+//                'hostname' => 'localhost',
+//                'port' => 6379,
+//                'database' => 'nndl',
+//            ],
         ],
         'user' => [
             'identityClass' => 'app\models\User',
